@@ -3,7 +3,7 @@ $.get( "/about", function( data ) {
     m2 = data.text2;
     
     document.getElementById('hosalot_id').innerHTML = m1;
-    sessionStorage.setItem("id", m1);
+    sessionStorage.setItem("student_id", m1);
 
     
 });

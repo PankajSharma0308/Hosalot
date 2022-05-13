@@ -41,7 +41,8 @@ router.use(bodyParser.urlencoded({ extended: false }));
 app.use((req,res,next) => {
 	console.log(req.path);
 	next();
-})
+});
+
 
 app.get('/login', (req, res) => {
 	// REDIRECT goes here

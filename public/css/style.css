@@ -330,6 +330,7 @@ blockquote p {
   text-indent: -9999px;
   background: url(images/logo.svg) no-repeat;
   background-size: 104px 46px;
+  font-family: "Lucida Console", "Courier New", monospace;
 }
 
 .logo:hover, .logo:focus {
