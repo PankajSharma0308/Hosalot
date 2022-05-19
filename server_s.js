@@ -8,8 +8,8 @@ const session = require("express-session");
 const http = require('http')
 const fs = require('fs')
 const res = require('express/lib/response');
-const alert = require('alert');
 const { allowedNodeEnvironmentFlags } = require('process');
+const { request } = require('express');
 
 
 var con = mysql2.createConnection({
@@ -43,6 +43,8 @@ app.use((req,res,next) => {
 	next();
 });
 
+
+var stud_id,stud_course,stud_sex,stud_age,stud_add,stud_name,stud_meal;
 
 app.get('/login', (req, res) => {
 	// REDIRECT goes here
@@ -99,6 +101,23 @@ app.post('/auth', function(request, response) {
 				request.session.loggedin = true;
 				request.session.email = email = results[0].stud_email;
 				request.session.stud_id = stud_id = results[0].stud_id;
+
+				con.query('Select * from student Where stud_id = ?',[stud_id], function( error,results,fields ){
+
+					if(error) throw error;
+
+					request.session.stud_name = stud_name = results[0].stud_name;
+					request.session.stud_course = stud_course = results[0].stud_course;
+					request.session.stud_age = stud_age = results[0].stud_age;
+					request.session.stud_sex = stud_sex = results[0].stud_sex;
+					request.session.stud_name = stud_add = results[0].stud_add;
+					request.session.stud_meal = stud_meal = results[0].stud_meal;
+
+					console.log(stud_name +" "+ stud_add+" "+stud_id);
+
+				});
+
+
        			console.log(email+password+stud_id);
 				// Redirect to home pa
 				
@@ -135,7 +154,6 @@ app.post('/permission', function(request, response) {
 				return;
 			};
 		
-			alert("Successful!");
 
 			console.log("Record Permission Inserted!");
 			response.render(__dirname+"/index.html");
@@ -151,6 +169,31 @@ app.post('/permission', function(request, response) {
 });
 
 
+app.post('/meals', function(request, response) {
+
+		meals = request.body.radiomeal;
+		console.log(request.body.radiomeal);
+		// Execute SQL query that'll select the account from the database based on the specified username and password
+		con.query('Update student set stud_meal = ? where stud_id = ?', [meals, stud_id], function(error, results, fields) {
+			// If there is an issue with the query, output the error
+			if (error) {
+				console.log(error);
+				return;
+			};
+		
+			
+
+			console.log("Record Meals Updated!");
+			response.render(__dirname+"/index.html");
+			response.end();
+
+
+    });
+});
+
+
+
+
 
 app.post('/about', function(request, response) {
 	// Capture the input fields
@@ -162,7 +205,19 @@ app.post('/about', function(request, response) {
 
 
 app.get('/auth', function(req, res){
-    res.json({ text:req.session.email, text2:req.session.stud_id});
+	
+	console.log(stud_name +" "+ stud_add+" "+stud_id);
+    res.json({ 
+		
+		stud_id_ : stud_id,
+		stud_name_ : stud_name,
+		stud_course_ : stud_course,
+		stud_sex_ :stud_sex,
+		stud_age_ : stud_age,
+		stud_add_ : stud_add,
+		stud_meal : stud_meal
+
+	});
 	
 });
 
@@ -171,7 +226,24 @@ app.get('/about', function(req, res){
 	
 });
 
+app.get('/book', function(req, res){
 
+	var url_ = "http://localhost:3005/book/"+req.session.stud_id;
+	res.redirect(url_);
+});
+
+app.get('/bookprivate', function(req, res){
+
+	var url_ = "http://localhost:3005/bookprivate/"+req.session.stud_id;
+	res.redirect(url_);
+});
+
+app.post('/admin', function(req,res){
+
+	var url_ = "http://localhost/hosalot/admin/login.php";
+	res.redirect(url_);
+
+});
 
 
 app.listen(3000);

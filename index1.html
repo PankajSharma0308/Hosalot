@@ -21,6 +21,7 @@
   <div class="topLayer">
     <div class="left">
       <div class="content">
+        <h2>Hosalot</h2>
         <h2>Sign Up</h2>
         <form id="form-signup" method="post" action = "/ins" >  
           <div class="form-element form-stack">
@@ -29,16 +30,13 @@
           </div>
           <div class="form-element form-stack">
             <label for="username-signup" class="form-label">Register No.</label>
-            <input id="username-signup" type="text" name="username">
+            <input id="username-signup" type="number" name="username">
           </div>
           <div class="form-element form-stack">
             <label for="password-signup" class="form-label">Password</label>
             <input id="password-signup" type="password" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}">
           </div>
-          <div class="form-element form-checkbox">
-            <input id="confirm-terms" type="checkbox" name="confirm" value="yes" class="checkbox">
-            <label for="confirm-terms">I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></label>
-          </div>
+         
           <div class="form-element form-submit">
             <button id="signUp" class="signup" type="submit" name="signup" formmethod="post">Sign up</button>
             
@@ -68,8 +66,15 @@
         </form>
  
         <button id="goRight" class="login off" name="signup">Sign Up</button>
+        &nbsp;
+        &nbsp;
+        <form method="post" action="\admin"> 
+          <button type = "submit" class="login" >Admin</button>
+        </form>
+
 
       </div>
+      
     </div>
   </div>
 </div>

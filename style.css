@@ -61,6 +61,18 @@ a:hover {
   color: #16a085;
 }
 
+
+.labels{
+  font-size: 2em;
+  font-style: italic;
+  margin-top: 1em;
+}
+
+.labels_2{
+  margin-left: 2.5em;
+  margin-top: 1em;;
+}
+
 a, img, .overlay, input, textarea, .plan-wrap p, .filters .filter {
 /*transition*/
   -webkit-transition: all .12s linear;
@@ -1227,6 +1239,10 @@ address i {
   line-height: 30px;
 }
 
+.forms2{
+  padding:1em;
+  
+}
 .box-icon {
   border-right: 2px solid #ebebeb;
   float: left;

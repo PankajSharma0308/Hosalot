@@ -391,12 +391,33 @@ $(function() {
 
 
 $(function() {
-	var msgFromServer1,msgFromServer2;
+	var stud_id,stud_course,stud_sex,stud_age,stud_add,stud_name,stud_meal;
 	$.get( "/auth", function( data ) {
-		msgFromServer1 = data.text;
-		msgFromServer2 = data.text2;
-		alert("Welcome "+msgFromServer1)
+		stud_id = data.stud_id_;
+		stud_name = data.stud_name_;
+		stud_course = data.stud_course_;
+		stud_sex = data.stud_sex_;
+		stud_age = data.stud_age_;
+		stud_add = data.stud_add_;
+		stud_meal = data.stud_meal;
+
+		sessionStorage.setItem("stud_id",stud_id);
+		sessionStorage.setItem("stud_name",stud_name);
+		sessionStorage.setItem("stud_course",stud_course);
+		sessionStorage.setItem("stud_sex",stud_sex);
+		sessionStorage.setItem("stud_age",stud_age);
+		sessionStorage.setItem("stud_add",stud_add);
+		sessionStorage.setItem("stud_meal",stud_meal);
+
+		alert("Welcome "+stud_name);
 	});	
 
+		function redirectTo(){
+			var parameter1 = "book";
+			var parameter2 = stud_id; // some thing like this you can set value for 1st Param.
+			 // some thing like this you can set value for 2nd Param.
+		   window.location.href="http://localhost:3005/"+parameter1+"/"+parameter2;
+	   
+	   }
 	
 });
