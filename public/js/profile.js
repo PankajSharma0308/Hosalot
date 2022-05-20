@@ -15,3 +15,14 @@ document.getElementById('p_stud_age').innerHTML = stud_age;
 document.getElementById('p_stud_add').innerHTML = stud_add;
 document.getElementById('p_stud_sex').innerHTML = stud_sex;
 document.getElementById('p_stud_meal').innerHTML = stud_meal;
+
+function changeMeal()
+{
+    var changeMeal = document.getElementById('stud_meal').value;
+    if (document.getElementById('r1').checked) {
+        sesssionStorage.setItem(document.getElementById('r1').value,"stud_meal");
+      }
+    else{
+        sesssionStorage.setItem(document.getElementById('r2').value,"stud_meal");
+    }
+}

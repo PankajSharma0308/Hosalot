@@ -37,7 +37,23 @@
         border: 0;
         outline: 0;
         transition: all 0.25s;
-        background: rgb(125, 125, 125);
+        background: #1abc9c;
+      }
+
+      .forms2{
+        z-index: 5;
+        position: absolute;
+        float: right;
+        margin: 0 0 20% 65%;
+        margin-top: -22%;
+      }
+
+      .lab1{
+        z-index: 7;
+        position: absolute;
+        float: right;
+        margin: 0 0 20% -2em;
+        margin-top: 5%;
       }
 
 </style>
@@ -94,27 +110,28 @@
         
         
         <div class="wrap services-wrap" >
-            <section class="grid grid-pad_2">
+            <section class="grid grid-pad_22">
 
-                <label class = "labels">Name : </label><h4 class = "labels_2" id="p_stud_name"></h4>
-                <label class = "labels">Register Number : </label><h5 class = "labels_2" id="p_stud_id"></h5>
-                <label class = "labels">Course : </label><h5 class = "labels_2" id="p_stud_course"></h5>
-                <label class = "labels">Sex : </label><h5 class = "labels_2" id="p_stud_sex"></h5>
-                <label class = "labels">Age : </label><h5 class = "labels_2" id="p_stud_age"></h5>
-                <label class = "labels">Address : </label><h5 class = "labels_2" id="p_stud_add"></h5>
-                <label class = "labels">Meal : </label><h5 class = "labels_2" id="p_stud_meal"></h5>
+                
+                <h3 class = "labels_2" id="p_stud_name" style="font-weight:bolder"></h3>
+                <h5 class = "labels_2" id="p_stud_id" style="margin-left:4em; font-style:oblique"></h5>
+                <h5 class = "labels_2" id="p_stud_course" style="margin-left:4em;font-style:oblique "></h5>
+                <h5 class = "labels_2" id="p_stud_sex" style="margin-left:4em;font-style:oblique "></h5>
+                <h5 class = "labels_2" id="p_stud_age" style="margin-left:4em;font-style:oblique "></h5>
+                <h5 class = "labels_2" id="p_stud_add" style="margin-left:4em;font-style:oblique "></h5>
+                <h5 class = "labels_2" id="p_stud_meal" style="margin-left:4em;font-style:oblique "></h5>
 
                 
 
             </section>
         </div>
         <form method="post" action="/meals" class="forms2">
-            <center><label>Veg</label></center>
-            <input type = "radio" name = "radiomeal" value="veg">
-            <center><label>Non - Veg</label></center>
-            <input type = "radio" name = "radiomeal" value="nonveg">
+            <label class="lab1">Veg</label>
+            <input type = "radio" name = "radiomeal" value="veg" id="r1">
+            <label class="lab1">Non - Veg</label>
+            <input type = "radio" name = "radiomeal" value="nonveg" id="r2">
 
-            <center><button type="submit" >Submit</button></center>
+            <button type="submit" onclick="changeMeal()">Submit</button>
         </form>
 
              <!-- Footer -->

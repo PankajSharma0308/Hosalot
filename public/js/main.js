@@ -409,7 +409,7 @@ $(function() {
 		sessionStorage.setItem("stud_add",stud_add);
 		sessionStorage.setItem("stud_meal",stud_meal);
 
-		alert("Welcome "+stud_name);
+		
 	});	
 
 		function redirectTo(){
