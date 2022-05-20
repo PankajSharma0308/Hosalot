@@ -18,11 +18,15 @@ document.getElementById('p_stud_meal').innerHTML = stud_meal;
 
 function changeMeal()
 {
-    var changeMeal = document.getElementById('stud_meal').value;
+    
     if (document.getElementById('r1').checked) {
-        sesssionStorage.setItem(document.getElementById('r1').value,"stud_meal");
+       //alert("veg");
+        sessionStorage.removeItem("stud_meal");
+        sesssionStorage.setItem("stud_meal","veg");
       }
     else{
-        sesssionStorage.setItem(document.getElementById('r2').value,"stud_meal");
+        //alert('nonveg');
+        sessionStorage.removeItem('stud_meal');
+        sesssionStorage.setItem("stud_meal","nonveg");
     }
 }

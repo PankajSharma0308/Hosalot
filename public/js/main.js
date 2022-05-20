@@ -390,6 +390,12 @@ $(function() {
 // }
 
 
+function myFunction() {
+	var popup = document.getElementById("myPopup");
+	popup.classList.toggle("show");
+}
+
+
 $(function() {
 	var stud_id,stud_course,stud_sex,stud_age,stud_add,stud_name,stud_meal;
 	$.get( "/auth", function( data ) {
@@ -421,3 +427,5 @@ $(function() {
 	   }
 	
 });
+
+
