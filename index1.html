@@ -52,11 +52,11 @@
         <form id="form-login" action="/auth"  method="post"   >
           <div class="form-element form-stack">
             <label for="username-login" class="form-label">Email</label>
-            <input id="username-login" type="text" name="email" value = "" pattern = "([a-z0-9\.-]+)@([a-z0-9]+)\.(christuniversity)(.in)"/>
+            <input id="username-login" type="text" name="email" value = "" pattern = "([a-z0-9\.-]+)@([a-z0-9]+)\.(christuniversity)(.in)" placeholder="University Email" required/>
           </div>
           <div class="form-element form-stack">
             <label for="password-login" class="form-label">Password</label>
-            <input id="password-login" type="password" name="password" value = "" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}">
+            <input id="password-login" type="password" name="password" value = "" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" placeholder="Password" required>
           </div>
           <div class="form-element form-submit">
             <button id="logIn" class="login" type="submit" name="login" value="" formmethod="post" >Log In</button>

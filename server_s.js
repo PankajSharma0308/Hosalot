@@ -13,10 +13,11 @@ const { request } = require('express');
 
 
 var con = mysql2.createConnection({
-  host: "localhost",
+  host: "127.0.0.2",
   user: "root",
-  password: "pankajsharma123",
-  database: "hostel"
+  port:"3307",
+  password: "",
+  database: "hosalot_db"
 });
 
 con.connect(function(err) {
@@ -44,7 +45,7 @@ app.use((req,res,next) => {
 });
 
 
-var stud_id,stud_course,stud_sex,stud_age,stud_add,stud_name,stud_meal;
+var stud_id,stud_course,stud_sex,stud_add,stud_name,stud_meal,stud_phone;
 
 app.get('/login', (req, res) => {
 	// REDIRECT goes here
@@ -102,15 +103,15 @@ app.post('/auth', function(request, response) {
 				request.session.email = email = results[0].stud_email;
 				request.session.stud_id = stud_id = results[0].stud_id;
 
-				con.query('Select * from student Where stud_id = ?',[stud_id], function( error,results,fields ){
+				con.query('Select * from student_details Where stu_id = ?',[stud_id], function( error,results,fields ){
 
 					if(error) throw error;
 
-					request.session.stud_name = stud_name = results[0].stud_name;
-					request.session.stud_course = stud_course = results[0].stud_course;
-					request.session.stud_age = stud_age = results[0].stud_age;
-					request.session.stud_sex = stud_sex = results[0].stud_sex;
-					request.session.stud_name = stud_add = results[0].stud_add;
+					request.session.stud_name = stud_name = results[0].Fname;
+					request.session.stud_course = stud_course = results[0].course;
+					request.session.stud_sex = stud_sex = results[0].gender;
+					request.session.stud_name = stud_add = results[0].address;
+					request.session.stud_phone = stud_phone = results[0].phone;
 					request.session.stud_meal = stud_meal = results[0].stud_meal;
 
 					console.log(stud_name +" "+ stud_add+" "+stud_id);
@@ -142,12 +143,15 @@ app.post('/permission', function(request, response) {
 	// Capture the input fields
 	let p_stud_id = request.body.per_stud_id;
 	let p_absent_reason = request.body.per_absent_reason;
+	let p_sdate = request.body.per_sdate;
+	let p_edate = request.body.per_edate;
+	
 	//console.log(username+password);
 	// Ensure the input fields exists and are not empty
-	console.log(p_stud_id+" "+p_absent_reason);
+	console.log(p_stud_id+" "+p_absent_reason+" "+p_sdate);
 	if (p_absent_reason && p_stud_id) {
 		// Execute SQL query that'll select the account from the database based on the specified username and password
-		con.query('INSERT INTO permission (p_absent_reason, stud_id) VALUES (?,?)', [p_absent_reason, p_stud_id], function(error, results, fields) {
+		con.query('INSERT INTO permission (stu_id, sdate, edate, reason, status) VALUES (?,?,?,?,?)', [ p_stud_id, p_sdate, p_edate, p_absent_reason, 'Pending' ], function(error, results, fields) {
 			// If there is an issue with the query, output the error
 			if (error) {
 				console.log(error);
@@ -174,7 +178,7 @@ app.post('/meals', function(request, response) {
 		meals = request.body.radiomeal;
 		console.log(request.body.radiomeal);
 		// Execute SQL query that'll select the account from the database based on the specified username and password
-		con.query('Update student set stud_meal = ? where stud_id = ?', [meals, stud_id], function(error, results, fields) {
+		con.query('Update student_details set stud_meal = ? where stu_id = ?', [meals, stud_id], function(error, results, fields) {
 			// If there is an issue with the query, output the error
 			if (error) {
 				console.log(error);
@@ -210,10 +214,10 @@ app.get('/auth', function(req, res){
     res.json({ 
 		
 		stud_id_ : stud_id,
-		stud_name_ : stud_name,
+		stud_name_ : stud_name,	
 		stud_course_ : stud_course,
-		stud_sex_ :stud_sex,
-		stud_age_ : stud_age,
+		stud_sex_ : stud_sex,
+		stud_phone_ : stud_phone,
 		stud_add_ : stud_add,
 		stud_meal : stud_meal
 
